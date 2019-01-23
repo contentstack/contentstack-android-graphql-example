@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GraphQL</string>
+    <string name="action_about">About</string>
+</resources>

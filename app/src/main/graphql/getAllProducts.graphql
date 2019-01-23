@@ -1,0 +1,11 @@
+query allProduct {
+  all_product(locale: "en-us") {
+    items{
+      title
+      price
+      featured_image{
+        url
+      }
+    }
+  }
+}
