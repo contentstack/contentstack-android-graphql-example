@@ -9,7 +9,7 @@ Perform the steps given below to get started with this app.
 
 Screenshot
 
-<img src='https://github.com/contentstack/contentstack-android-graphql-example/raw/master/contentstack-graphql-example-app/screenshot/ProductList.png' width='320' height='690'/>
+<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/master/app/src/main/java/com/contentstack/graphql/screenshot/ProductList.png' width='320' height='690'/>
 
 ## Prerequisites
 
