@@ -37,7 +37,7 @@ For this app, we need just one content type: Product. Here’s what it’s neede
 -   Product: Lets you add the session content to your app
     
 
-For quick integration, we have already created the content type. [Download the content type](https://drive.google.com/open?id=1jnpNIHRb4kNcP3r0I2QMatGzPwNXxpzS) and [import](https://www.contentstack.com/docs/guide/content-types#importing-a-content-type) it to your stack. (If needed, you can [create your own content types](https://www.contentstack.com/docs/guide/content-types#creating-a-content-type). Read more about [Content Types](https://www.contentstack.com/docs/guide/content-types)).
+For quick integration, we have already created the content type. [Download the content type](https://github.com/contentstack/contentstack-android-graphql-example/blob/master/app/src/main/assets/ContentTypes.zip) and [import](https://www.contentstack.com/docs/guide/content-types#importing-a-content-type) it to your stack. (If needed, you can [create your own content types](https://www.contentstack.com/docs/guide/content-types#creating-a-content-type). Read more about [Content Types](https://www.contentstack.com/docs/guide/content-types)).
 
 Now that all the content types are ready, let’s add some content for your Stack.
 
