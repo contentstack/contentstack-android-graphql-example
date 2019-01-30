@@ -7,6 +7,10 @@ This is an example app built using Contentstack GraphQL with Apollo Android SDK.
 
 Perform the steps given below to get started with this app.
 
+Screenshot
+
+<img src='https://github.com/contentstack/contentstack-android-graphql-example/raw/master/contentstack-graphql-example-app/screenshot/ProductList.png' width='320' height='690'/>
+
 ## Prerequisites
 
 -   [Android Studio](https://github.com/contentstack/contentstack-android-persistence-example/blob/master)
@@ -156,6 +160,7 @@ Finally, integrate ApolloClient into the app and pass in the generated queries. 
     Log.e(TAG, e.getLocalizedMessage());  
     }  
     }); 
+
 
   
 Additionally, the snippet above sets the Stack and the Locale to be used by the client.

@@ -4,7 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
-
+import com.contentstack.graphql.AllProductQuery;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.contentstack.graphql.AllProductQuery;
 import com.contentstack.graphql.about.AboutActivity;
 import com.contentstack.graphql.CSGraphQLApp;
 import com.contentstack.graphql.R;
