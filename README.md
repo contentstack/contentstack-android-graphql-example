@@ -51,7 +51,7 @@ Now that we have created the sample data, it’s time to use and configure the p
 
 To get your app up and running quickly, we have created a sample Android app for this project. You need to download it and change the configuration. Download the app using the command given below:
 
-$ git clone https://github.com/contentstack/contentstack-android-graphql-example.git
+    $ git clone https://github.com/contentstack/contentstack-android-graphql-example.git
 
 ## Step 6: Add Gradle plugin
 
@@ -131,10 +131,9 @@ Create an instance of OkHttpClient and pass it to the ApolloClient builder as fo
     .addInterceptor(chain -> {  
     Request original = chain.request();  
     Request.Builder builder = original.newBuilder().method(original.method(), original.body());  
-    Add below authentications  
-    builder.header("User-Agent", "Android Apollo Client");  
-    builder.header("X-Shopify-Storefront-Access-Token", shopifyApiKey);  
-    return chain.proceed(builder.build());  
+    //Add below authentications  
+    //builder.header("User-Agent", "Android Apollo Client");  
+     return chain.proceed(builder.build());  
     })  
     .build();  
       
