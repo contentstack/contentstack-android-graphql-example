@@ -43,7 +43,7 @@ Now that all the content types are ready, let’s add some content for your Stac
 
 ## Step 4: Adding content
 
-[Create](https://www.contentstack.com/docs/guide/content-management#add-a-new-entry) and [publish](https://www.contentstack.com/docs/guide/content-management#publish-an-entry) entries for the ‘Session’ content type.
+[Create](https://www.contentstack.com/docs/guide/content-management#add-a-new-entry) and [publish](https://www.contentstack.com/docs/guide/content-management#publish-an-entry) entries for the ‘Product’ content type.
 
 Now that we have created the sample data, it’s time to use and configure the presentation layer.
 
