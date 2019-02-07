@@ -109,8 +109,8 @@ The following is an example of a sample query for GraphQL:
   
 To compile your code, make sure you have placed the .graphql query and downloaded schema.json at below location.  
   
-    /app/src/main/graphql/com/contentstack.graphql/getAllProducts.graphql        
-    /app/src/main/graphql/com/contentstack.graphql/schema.json
+    /app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql        
+    /app/src/main/graphql/com/contentstack/graphql/schema.json
    
 On the basis of the downloaded schema.json file and the contents of the .graphql files, Java classes will be generated in the build/generated/source/apollo directory. One Java class will be generated for each of your queries with nested classes.  
   
