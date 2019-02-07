@@ -75,7 +75,7 @@ public class ProductActivity extends AppCompatActivity {
         binding.refreshContainer.setRefreshing(true);
         arrayList = new ArrayList<>();
 
-        createApolloClient().query(AllProductQuery.builder().build()).enqueue(
+        createApolloClient().query(AllProductQuery.builder().skip(2).build()).enqueue(
                 new ApolloCall.Callback<AllProductQuery.Data>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
