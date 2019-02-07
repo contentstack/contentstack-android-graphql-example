@@ -57,23 +57,27 @@ To get your app up and running quickly, we have created a sample Android app for
   
 To add the Gradle plugin, you need to first install the following dependencies into the root build.gradle file as follows:  
   
-    
-  
- buildscript {    repositories {    
+ ```
+
+buildscript {    
+repositories {    
     jcenter()    
-    }    
-    dependencies {    
+    }   
+  dependencies {    
     classpath 'com.apollographql.apollo:apollo-gradle-plugin:1.0.0-alpha2'    
     }    
-    }  
-     Next, add the Gradle plugin within your app module’s build.gradle file as follows:  
-     // other apply statements, Apollo needs to be last    
+}  
+
+
+// Next, add the Gradle plugin within your app module’s build.gradle file as follows:  
+// other apply statements, Apollo needs to be last    
     apply plugin: 'com.apollographql.android'    
         
-    dependencies {    
-    // more implementation statments    
-    implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha2'    
-    }  
+ dependencies {    
+ // more implementation statments    
+  implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha2'      
+} 
+``` 
   
 Refer the [Apollo-Android](https://www.apollographql.com/docs/android/) documentation for more details on what needs to be performed to add the Apollo SDK for Android into your project.  
   
@@ -96,21 +100,25 @@ https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-
   
 The following is an example of a sample query for GraphQL:  
   
- query allProduct {    all_Product(locale: "en-us") {    
-    title    
-    price    
-    featured_image {    
-    url    
-    }    
-    }    
-    }  
+ ```
+ query allProduct {    
+ all_Product(locale: "en-us") {    
+      title    
+      price    
+      featured_image {    
+      url    
+    }}}
+   ```  
+    
   
+
 ## Step 8: Generate Code Model  
   
 To compile your code, make sure you have placed the .graphql query and downloaded schema.json at below location.  
-  
-    /app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql        
-    /app/src/main/graphql/com/contentstack/graphql/schema.json
+  ```
+/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql        
+ /app/src/main/graphql/com/contentstack/graphql/schema.json
+```  
    
 On the basis of the downloaded schema.json file and the contents of the .graphql files, Java classes will be generated in the build/generated/source/apollo directory. One Java class will be generated for each of your queries with nested classes.  
   
@@ -122,7 +130,9 @@ After downloading the schema and creating the queries, let’s create an instanc
   
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
   
- okHttpClient = new OkHttpClient.Builder()    .addInterceptor(chain -> {    
+ ```
+okHttpClient = new OkHttpClient.Builder()    
+.addInterceptor(chain -> {    
     Request original = chain.request();    
     Request.Builder builder = original.newBuilder().method(original.method(), original.body());    
     //Add below authentications    
@@ -134,14 +144,18 @@ Create an instance of OkHttpClient and pass it to the ApolloClient builder as fo
     apolloClient = ApolloClient.builder().serverUrl(ContentstackApp.BASE_URL)    
     .okHttpClient(okHttpClient)    
     .build();  
+```
   
 This creates our Apollo Client which is ready to fetch data.  
   
 ## Step 10: Fetch data using ApolloClient    
    
 Finally, integrate ApolloClient into the app and pass in the generated queries. write the logic for handling already-parsed responses.  
-  
- apolloClient.query(AllProductQuery.builder().build()).enqueue(new ApolloCall.Callback<AllProductQuery.Data>() {    @Override    
+                       
+```
+apolloClient.query(AllProductQuery.builder().build()).enqueue(new      
+  ApolloCall.Callback<AllProductQuery.Data>() {    
+        @Override    
     public  void  onResponse(@NotNull Response<AllProductQuery.Data> response) {    
     Log.d(TAG, response.toString());    
     }    
@@ -150,6 +164,8 @@ Finally, integrate ApolloClient into the app and pass in the generated queries. 
     public  void  onFailure(@NotNull ApolloException e) {    
     Log.e(TAG, e.getLocalizedMessage());    
     }    
-});   
+});
+```
+
   
   Additionally, the snippet above sets the Stack and the Locale to be used by the client.
