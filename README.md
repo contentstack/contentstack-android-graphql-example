@@ -88,8 +88,9 @@ In this step, you need to construct a GraphQL schema file for your content model
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:  
 ```  
  apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
-Then, place the schema file next to your .graphql files or within the /src/main/graphql directory.  
 ```  
+Then, place the schema file next to your .graphql files or within the /src/main/graphql directory.  
+
 ## Step 7: Write GraphQL Queries  
   
 Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. Use this interface to write and test your queries.  
