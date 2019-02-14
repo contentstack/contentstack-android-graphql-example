@@ -52,7 +52,7 @@ Now that we have created the sample data, it’s time to use and configure the p
   
 To get your app up and running quickly, we have created a sample Android app for this project. You need to download it and change the configuration. Download the app using the command given below:  
   
- $ git clone https://github.com/contentstack/contentstack-android-graphql-example.git  
+``` $ git clone https://github.com/contentstack/contentstack-android-graphql-example.git  ```
 ## Step 6: Add Gradle plugin  
   
 To add the Gradle plugin, you need to first install the following dependencies into the root build.gradle file as follows:  
@@ -86,18 +86,18 @@ Refer the [Apollo-Android](https://www.apollographql.com/docs/android/) document
 In this step, you need to construct a GraphQL schema file for your content model and include the schema file in your project. This schema file is a JSON file that contains the results of introspection queries and is used by Apollo-Android for the code generation process.  
   
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:  
-  
+```  
  apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
 Then, place the schema file next to your .graphql files or within the /src/main/graphql directory.  
-  
+```  
 ## Step 7: Write GraphQL Queries  
   
 Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. Use this interface to write and test your queries.  
   
 Open a browser of your choice and hit the URL given below:  
-  
+```
 https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name  
-  
+```
 The following is an example of a sample query for GraphQL:  
   
  ```
