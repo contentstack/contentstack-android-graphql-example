@@ -57,6 +57,7 @@ buildscript {
   repositories {
     jcenter()
   }
+  
   dependencies {
     classpath 'com.apollographql.apollo:apollo-gradle-plugin:x.y.z'
   }
@@ -97,7 +98,7 @@ Then, place the schema file next to your .graphql files or within the /src/main/
 Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. 
 Use this interface to write and test your queries.
   
-Open a browser of your choice and hit the URL given below:  
+Open a browser of your choice and hit the URL given below (after entering the required details):  
 ```
 https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name  
 ```
@@ -113,24 +114,13 @@ The following is an example of a sample query for GraphQL:
     }}}
    ```  
     
+Note: You will find the schema.json file within apollo-/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql
+Next, you need to create an instance of Apollo Client to fetch data.
+ 
   
+## Step 9: Create ApolloClient
 
-## Step 9: Generate Code Model  
-  
-To compile your code, make sure you have placed the .graphql query and downloaded schema.json at below location.  
-```
-/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql
-      
-/app/src/main/graphql/com/contentstack/graphql/schema.json
-```  
-   
-On the basis of the downloaded schema.json file and the contents of the .graphql files, Java classes will be generated in the build/generated/source/apollo directory. One Java class will be generated for each of your queries with nested classes.  
-  
-Next, you need to create an instance of Apollo Client to fetch data.  
-  
-## Step 10: Create ApolloClient  
-After downloading the schema and creating the queries, let’s create an instance of ApolloClient and point it at the GraphQL server.  
-
+After downloading the schema and creating the queries, let’s create an instance of ApolloClient and point it at the GraphQL server.
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
   
  ```
@@ -149,7 +139,7 @@ apolloClient = ApolloClient.builder().serverUrl(ContentstackApp.BASE_URL)
   
 This creates our Apollo Client which is ready to fetch data.  
   
-## Step 11: Fetch data using ApolloClient    
+## Step 10: Fetch data using ApolloClient    
    
 Finally, integrate ApolloClient into the app and pass in the generated queries. write the logic for handling already-parsed responses.  
                        
