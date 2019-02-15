@@ -167,3 +167,10 @@ ApolloCall.Callback<AllProductQuery.Data>() {
 });
 ```
 Additionally, the snippet above sets the Stack and the Locale to be used by the client.
+
+##  More Resources
+
+-   [Getting started with Android SDK](https://www.contentstack.com/docs/platforms/android)
+-   [Using GraphQL queries with Android SDK](https://www.contentstack.com/docs/guide/contentstack-graphql-api/using-graphql-with-contentstack-android-sdk)
+-   [GraphQL API documentation ](https://www.contentstack.com/docs/apis/graphql-content-delivery-api/)
+

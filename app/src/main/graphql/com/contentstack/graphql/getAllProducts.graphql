@@ -1,5 +1,5 @@
-query allProduct($skip:Int) {
-  all_product(locale: "en-us", skip:$skip) {
+query allProduct($skip:Int, $limit:Int) {
+  all_product(locale: "en-us", skip:$skip, limit:$limit) {
     items{
       title
       price

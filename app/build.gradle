@@ -13,10 +13,8 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://graphql.contentstack.io/stacks/blt44d915c18f115370?access_token=cs551d666a332e455a34174bd0&environment=production\""
-            //https://graphql.contentstack.io/stacks/blt07ecd53d782e22bb/?access_token=cs77efd3e3078304be240ceb0f&environment=mobile
-            //buildConfigField "String", "ENDPOINT_DEV", "\"https://dev-graphql.contentstack.io/stacks/blt44d915c18f115370?access_token=cs551d666a332e455a34174bd0&environment=production\""
-            //buildConfigField "String", "ENDPOINT_STAG", "\"https://stag-graphql.contentstack.com/stacks/blt27375ee3faaf9bcb?access_token=cs4ea368e22cdf93943a9923dd&environment=development\""
+            buildConfigField "String", "BASE_ENDPOINT", "\"https://graphql.contentstack.io/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
+            buildConfigField "String", "ENDPOINT_STAG", "\"https://stag-graphql.contentstack.com/stacks/blt27375ee3faaf9bcb?access_token=cs4ea368e22cdf93943a9923dd&environment=development\""
         }
         release {
             minifyEnabled false
@@ -35,7 +33,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'

@@ -1,15 +1,13 @@
 package com.contentstack.graphql.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
 import com.contentstack.graphql.R;
-import com.contentstack.graphql.product.ProductActivity;
-
+import com.contentstack.graphql.product.view.ProductActivity;
 import java.util.Objects;
+
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -21,6 +19,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             startActivity(new Intent(this, ProductActivity.class));
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             finish();
         }, 1000);
     }

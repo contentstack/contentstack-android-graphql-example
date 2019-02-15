@@ -1,6 +1,8 @@
-package com.contentstack.graphql;
+package com.contentstack.graphql.utils;
 
 import android.util.Log;
+
+import com.contentstack.graphql.BuildConfig;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +19,7 @@ public class NetworkInterceptor implements Interceptor {
     @Override public Response intercept(@NotNull Interceptor.Chain chain) throws IOException {
 
         Request original = chain.request();
-        Request request = original.newBuilder().url(BuildConfig.BASE_URL)
+        Request request = original.newBuilder().url(BuildConfig.ENDPOINT_STAG)
                 .header("operationName", "allProduct")
                 .header("query", bodyToString(original))
                 .method(original.method(), original.body())

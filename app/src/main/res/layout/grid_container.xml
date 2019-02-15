@@ -5,11 +5,8 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
     card_view:cardCornerRadius="5dp"
-    card_view:contentPadding= "2dp"
-    card_view:cardUseCompatPadding="true"
-    android:layout_margin="@dimen/vertical_margin">
+    card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +22,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:padding="@dimen/vertical_margin"
             android:background="#0FFFFFFF"
             android:orientation="vertical">
@@ -44,12 +40,11 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_support"
                 android:layout_marginTop="@dimen/vertical_margin"
-                android:padding="@dimen/vertical_margin"
+                android:paddingLeft="@dimen/vertical_margin"
+                android:paddingRight="@dimen/vertical_margin"
                 android:text="@string/app_name"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
