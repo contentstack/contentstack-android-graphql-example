@@ -2,6 +2,8 @@ package com.contentstack.graphql;
 
 import android.util.Log;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -12,20 +14,17 @@ import okio.Buffer;
 
 public class NetworkInterceptor implements Interceptor {
 
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
-    @Override public Response intercept(Interceptor.Chain chain) throws IOException {
+    @Override public Response intercept(@NotNull Interceptor.Chain chain) throws IOException {
 
         Request original = chain.request();
-        Request request = original.newBuilder()
-                    .url(BuildConfig.ENDPOINT)
-                    .header("operationName", "allProduct")
-                    .header("query", bodyToString(original))
-                    .method(original.method(), original.body())
-                    .build();
+        Request request = original.newBuilder().url(BuildConfig.BASE_URL)
+                .header("operationName", "allProduct")
+                .header("query", bodyToString(original))
+                .method(original.method(), original.body())
+                .build();
 
         Log.e("bodyToString(original)", bodyToString(original));
-            return chain.proceed(request);
+        return chain.proceed(request);
     }
 
 

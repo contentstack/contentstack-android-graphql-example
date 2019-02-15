@@ -44,14 +44,13 @@ public class ProductActivity extends AppCompatActivity {
     }
 
 
-
-
     private ApolloClient createApolloClient(){
 
-         OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new NetworkInterceptor()).build();
+         OkHttpClient httpClient = new OkHttpClient.Builder()
+                 .addInterceptor(new NetworkInterceptor()).build();
 
-         ApolloClient apolloClient = ApolloClient.builder()
-                .serverUrl(HttpUrl.get(BuildConfig.ENDPOINT))
+        ApolloClient apolloClient = ApolloClient.builder()
+                .serverUrl(HttpUrl.get(BuildConfig.BASE_URL))
                 .okHttpClient(httpClient)
                 .build();
 
@@ -60,8 +59,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
 
-    private void setToolbar()
-    {
+    private void setToolbar() {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Contentstack");
         getSupportActionBar().setSubtitle("GraphQL");
         getSupportActionBar().setElevation(0);
@@ -70,11 +68,11 @@ public class ProductActivity extends AppCompatActivity {
         binding.refreshContainer.setOnRefreshListener(this::getProducts);
     }
 
+
     private void getProducts() {
 
         binding.refreshContainer.setRefreshing(true);
         arrayList = new ArrayList<>();
-
         createApolloClient().query(AllProductQuery.builder().skip(2).build()).enqueue(
                 new ApolloCall.Callback<AllProductQuery.Data>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -93,7 +91,6 @@ public class ProductActivity extends AppCompatActivity {
 
                 ProductActivity.this.runOnUiThread(() -> {
                     binding.refreshContainer.setRefreshing(false);
-                    binding.errorLayout.setVisibility(View.GONE);
                     binding.recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2 ));
                     adapter = new ProductAdapter(getApplicationContext(), arrayList);
                     binding.recyclerView.setAdapter(adapter);
@@ -103,22 +100,22 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull ApolloException e) {
                 Log.e("onFailure", e.getLocalizedMessage());
-
                 ProductActivity.this.runOnUiThread(()->{
                     binding.refreshContainer.setRefreshing(false);
-                    binding.errorLayout.setVisibility(View.VISIBLE);
+                    binding.tvError.setVisibility(View.VISIBLE);
                     binding.tvError.setText(String.format("Error Occurred %s", e.getLocalizedMessage()));
                 });
             }
         });
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

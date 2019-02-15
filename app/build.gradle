@@ -13,9 +13,10 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://dev-graphql.contentstack.io/stacks/blt44d915c18f115370/explore?access_token=cs551d666a332e455a34174bd0&environment=production\""
-            buildConfigField "String", "ENDPOINT", "\"https://dev-graphql.contentstack.io/stacks/blt44d915c18f115370?access_token=cs551d666a332e455a34174bd0&environment=production\""
-
+            buildConfigField "String", "BASE_URL", "\"https://graphql.contentstack.io/stacks/blt44d915c18f115370?access_token=cs551d666a332e455a34174bd0&environment=production\""
+            //https://graphql.contentstack.io/stacks/blt07ecd53d782e22bb/?access_token=cs77efd3e3078304be240ceb0f&environment=mobile
+            //buildConfigField "String", "ENDPOINT_DEV", "\"https://dev-graphql.contentstack.io/stacks/blt44d915c18f115370?access_token=cs551d666a332e455a34174bd0&environment=production\""
+            //buildConfigField "String", "ENDPOINT_STAG", "\"https://stag-graphql.contentstack.com/stacks/blt27375ee3faaf9bcb?access_token=cs4ea368e22cdf93943a9923dd&environment=development\""
         }
         release {
             minifyEnabled false
@@ -39,9 +40,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
     implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha3'
-
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'

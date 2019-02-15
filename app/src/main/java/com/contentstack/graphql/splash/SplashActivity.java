@@ -9,13 +9,15 @@ import android.os.Handler;
 import com.contentstack.graphql.R;
 import com.contentstack.graphql.product.ProductActivity;
 
+import java.util.Objects;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         new Handler().postDelayed(() -> {
             startActivity(new Intent(this, ProductActivity.class));
