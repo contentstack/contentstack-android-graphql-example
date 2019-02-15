@@ -52,32 +52,34 @@ $ git clone https://github.com/contentstack/contentstack-android-graphql-example
   
 To add the Gradle plugin, you need to first install the following dependencies into the root build.gradle file as follows:  
   
- ```
-buildscript {    
-repositories {    
-    jcenter()    
-    }   
-  dependencies {    
-    classpath 'com.apollographql.apollo:apollo-gradle-plugin:1.0.0-alpha2'    
-    }    
-}  
+```
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.apollographql.apollo:apollo-gradle-plugin:x.y.z'
+  }
+}
+
 ```
 
 Next, add the Gradle plugin within your app module’s build.gradle file as follows:
 
 ``` 
-//other apply statements, Apollo needs to be last    
-apply plugin: 'com.apollographql.android'    
-        
-dependencies {    
- //more implementation statments    
-  implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha2'      
-} 
+apply plugin: 'com.apollographql.android'
+
+dependencies {
+  ...
+  implementation 'com.apollographql.apollo:apollo-runtime:x.y.z'
+  ...
+}
+ 
 ``` 
   
 Refer the [Apollo-Android](https://www.apollographql.com/docs/android/) documentation for more details on what needs to be performed to add the Apollo SDK for Android into your project.  
   
-## Step 6: Download your schema  
+## Step 7: Download your schema  
   
 In this step, you need to construct a GraphQL schema file for your content model and include the schema file in your project. This schema file is a JSON file that contains the results of introspection queries and is used by Apollo-Android for the code generation process.  
   
@@ -85,11 +87,12 @@ Download the GraphQL schema for your content model using Apollo CLI or you can u
 
 ```  
 apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
+
 ```  
 
 Then, place the schema file next to your .graphql files or within the /src/main/graphql directory.  
 
-## Step 7: Write GraphQL Queries  
+## Step 8: Write GraphQL Queries  
   
 Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. 
 Use this interface to write and test your queries.
@@ -112,7 +115,7 @@ The following is an example of a sample query for GraphQL:
     
   
 
-## Step 8: Generate Code Model  
+## Step 9: Generate Code Model  
   
 To compile your code, make sure you have placed the .graphql query and downloaded schema.json at below location.  
 ```
@@ -125,7 +128,7 @@ On the basis of the downloaded schema.json file and the contents of the .graphql
   
 Next, you need to create an instance of Apollo Client to fetch data.  
   
-## Step 9: Create ApolloClient  
+## Step 10: Create ApolloClient  
 After downloading the schema and creating the queries, let’s create an instance of ApolloClient and point it at the GraphQL server.  
 
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
@@ -146,7 +149,7 @@ apolloClient = ApolloClient.builder().serverUrl(ContentstackApp.BASE_URL)
   
 This creates our Apollo Client which is ready to fetch data.  
   
-## Step 10: Fetch data using ApolloClient    
+## Step 11: Fetch data using ApolloClient    
    
 Finally, integrate ApolloClient into the app and pass in the generated queries. write the logic for handling already-parsed responses.  
                        
