@@ -34,6 +34,7 @@ public class NetworkInterceptor implements Interceptor {
         try {
             final Request copy = request.newBuilder().build();
             final Buffer buffer = new Buffer();
+            assert copy.body() != null;
             copy.body().writeTo(buffer);
             return buffer.readUtf8();
         } catch (final IOException e) {
