@@ -115,6 +115,7 @@ The following is an example of a sample query for GraphQL:
    ```  
     
 Note: You will find the schema.json file within apollo-/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql
+
 Next, you need to create an instance of Apollo Client to fetch data.
  
   
