@@ -13,9 +13,9 @@ Screenshot
   
 ## Prerequisites  
   
-- [Android Studio](https://github.com/contentstack/contentstack-android-persistence-example/blob/master) 
+- [Android Studio](https://developer.android.com/studio/) 
 - [Contentstack account](https://app.contentstack.com/#!/login)  
-- [Basic knowledge of Contentstack](https://www.contentstack.com/docs/)  
+- [Basic knowledge of Contentstack](https://www.contentstack.com/docs/platforms/android)  
       
   
 In this tutorial, we will first go through the steps involved in configuring Contentstack and then look at the steps required to customize and use the presentation layer.  
@@ -53,7 +53,6 @@ $ git clone https://github.com/contentstack/contentstack-android-graphql-example
 To add the Gradle plugin, you need to first install the following dependencies into the root build.gradle file as follows:  
   
  ```
-
 buildscript {    
 repositories {    
     jcenter()    
@@ -64,13 +63,14 @@ repositories {
 }  
 ```
 
-Next, add the Gradle plugin within your app module’s build.gradle file as follows: 
+Next, add the Gradle plugin within your app module’s build.gradle file as follows:
+
 ``` 
-// other apply statements, Apollo needs to be last    
-    apply plugin: 'com.apollographql.android'    
+//other apply statements, Apollo needs to be last    
+apply plugin: 'com.apollographql.android'    
         
- dependencies {    
- // more implementation statments    
+dependencies {    
+ //more implementation statments    
   implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha2'      
 } 
 ``` 
@@ -81,15 +81,18 @@ Refer the [Apollo-Android](https://www.apollographql.com/docs/android/) document
   
 In this step, you need to construct a GraphQL schema file for your content model and include the schema file in your project. This schema file is a JSON file that contains the results of introspection queries and is used by Apollo-Android for the code generation process.  
   
-Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:  
+Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
+
 ```  
- apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
+apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
 ```  
+
 Then, place the schema file next to your .graphql files or within the /src/main/graphql directory.  
 
 ## Step 7: Write GraphQL Queries  
   
-Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. Use this interface to write and test your queries.  
+Contentstack provides a GraphQL playground, which is a GraphiQL interface, to test your GraphQL queries in your browser. 
+Use this interface to write and test your queries.
   
 Open a browser of your choice and hit the URL given below:  
 ```
@@ -112,9 +115,10 @@ The following is an example of a sample query for GraphQL:
 ## Step 8: Generate Code Model  
   
 To compile your code, make sure you have placed the .graphql query and downloaded schema.json at below location.  
-  ```
-/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql        
- /app/src/main/graphql/com/contentstack/graphql/schema.json
+```
+/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql
+      
+/app/src/main/graphql/com/contentstack/graphql/schema.json
 ```  
    
 On the basis of the downloaded schema.json file and the contents of the .graphql files, Java classes will be generated in the build/generated/source/apollo directory. One Java class will be generated for each of your queries with nested classes.  
@@ -130,9 +134,9 @@ Create an instance of OkHttpClient and pass it to the ApolloClient builder as fo
 okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {    
     Request original = chain.request();    
     Request.Builder builder = original.newBuilder().method(original.method(), original.body());    
-   //authentications    
-   //builder.header("User-Agent", "Android Apollo Client");    
-     return chain.proceed(builder.build());    
+    //authentications    
+    //builder.header("User-Agent", "Android Apollo Client");    
+        return chain.proceed(builder.build());    
     }).build();    
         
 apolloClient = ApolloClient.builder().serverUrl(ContentstackApp.BASE_URL)    
