@@ -88,10 +88,9 @@ Download the GraphQL schema for your content model using Apollo CLI or you can u
 
 ```  
 apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
-
 ```  
 
-Then, place the schema file next to your .graphql files or within the /src/main/graphql directory.  
+Note: Place the schema file next to your .graphql files or within the /app/src/main/graphql/com/contentstack/graphql directory.
 
 ## Step 8: Write GraphQL Queries  
   
@@ -113,8 +112,6 @@ The following is an example of a sample query for GraphQL:
       url    
     }}}
    ```  
-    
-Note: You will find the schema.json file within apollo-/app/src/main/graphql/com/contentstack/graphql/getAllProducts.graphql
 
 Next, you need to create an instance of Apollo Client to fetch data.
  
