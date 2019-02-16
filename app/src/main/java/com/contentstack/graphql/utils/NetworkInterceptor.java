@@ -19,13 +19,12 @@ public class NetworkInterceptor implements Interceptor {
     @Override public Response intercept(@NotNull Interceptor.Chain chain) throws IOException {
 
         Request original = chain.request();
-        Request request = original.newBuilder().url(BuildConfig.ENDPOINT_STAG)
+        Request request = original.newBuilder().url(BuildConfig.BASE_ENDPOINT)
                 .header("operationName", "allProduct")
                 .header("query", bodyToString(original))
                 .method(original.method(), original.body())
                 .build();
 
-        Log.e("bodyToString(original)", bodyToString(original));
         return chain.proceed(request);
     }
 

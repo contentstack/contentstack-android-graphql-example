@@ -50,7 +50,7 @@ public class ProductActivity extends AppCompatActivity {
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new NetworkInterceptor()).build();
         ApolloClient apolloClient = ApolloClient.builder()
-                .serverUrl(HttpUrl.get(BuildConfig.ENDPOINT_STAG))
+                .serverUrl(HttpUrl.get(BuildConfig.BASE_ENDPOINT))
                 .okHttpClient(httpClient).build();
         return apolloClient;
     }
@@ -69,6 +69,7 @@ public class ProductActivity extends AppCompatActivity {
 
         getProducts(mTotalItemCount, mPostsPerPage);
         binding.refreshContainer.setOnRefreshListener(() -> getProducts(mTotalItemCount, mPostsPerPage));
+
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NotNull RecyclerView recyclerView, int dx, int dy) {
@@ -76,7 +77,8 @@ public class ProductActivity extends AppCompatActivity {
 
                 mTotalItemCount = gridLayoutManager.getItemCount();
                 mLastVisibleItemPosition = gridLayoutManager.findLastVisibleItemPosition();
-                if (!binding.refreshContainer.isRefreshing() && mTotalItemCount <= (mLastVisibleItemPosition + mPostsPerPage)) {
+                if (!binding.refreshContainer.isRefreshing() &&
+                        mTotalItemCount <= (mLastVisibleItemPosition + mPostsPerPage)) {
 
                     binding.refreshContainer.setRefreshing(true);
                     Log.e("LastVisibleItemPosition", String.valueOf(mLastVisibleItemPosition));
@@ -125,7 +127,8 @@ public class ProductActivity extends AppCompatActivity {
                 ProductActivity.this.runOnUiThread(()->{
                     binding.refreshContainer.setRefreshing(false);
                     binding.tvError.setVisibility(View.VISIBLE);
-                    binding.tvError.setText(String.format("Error Occurred %s", e.getLocalizedMessage()));
+                    binding.tvError.setText(String.format("Error Occurred %s",
+                            e.getLocalizedMessage()));
                 });
             }
         });

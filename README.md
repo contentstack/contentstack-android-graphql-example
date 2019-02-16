@@ -127,9 +127,7 @@ Create an instance of OkHttpClient and pass it to the ApolloClient builder as fo
  ```
 okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {    
     Request original = chain.request();    
-    Request.Builder builder = original.newBuilder().method(original.method(), original.body());    
-    //authentications    
-    //builder.header("User-Agent", "Android Apollo Client");    
+    Request.Builder builder = original.newBuilder().method(original.method(), original.body());      
         return chain.proceed(builder.build());    
     }).build();    
         
