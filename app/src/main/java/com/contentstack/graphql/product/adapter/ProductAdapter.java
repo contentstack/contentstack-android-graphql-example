@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private List<AllProductQuery.Item> apolloResp;
+
     public ProductAdapter() {
         this.apolloResp = new ArrayList<>();
     }

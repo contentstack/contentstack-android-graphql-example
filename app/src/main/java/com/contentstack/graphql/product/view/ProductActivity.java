@@ -4,24 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.contentstack.graphql.AllProductQuery;
-import com.contentstack.graphql.BuildConfig;
 import com.contentstack.graphql.databinding.ProductsLayoutBinding;
-import com.contentstack.graphql.utils.NetworkInterceptor;
 import com.contentstack.graphql.R;
 import com.contentstack.graphql.product.adapter.ProductAdapter;
 import org.jetbrains.annotations.NotNull;
+
+import static com.contentstack.graphql.BuildConfig.BASE_URL;
 
 
 public class ProductActivity extends AppCompatActivity {
@@ -47,11 +45,9 @@ public class ProductActivity extends AppCompatActivity {
 
     private ApolloClient getApolloClient(){
 
-        OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(new NetworkInterceptor()).build();
-        ApolloClient apolloClient = ApolloClient.builder()
-                .serverUrl(HttpUrl.get(BuildConfig.BASE_ENDPOINT))
-                .okHttpClient(httpClient).build();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        ApolloClient apolloClient = ApolloClient.builder().serverUrl(BASE_URL)
+                .okHttpClient(okHttpClient).build();
         return apolloClient;
     }
 
@@ -112,11 +108,7 @@ public class ProductActivity extends AppCompatActivity {
                         adapter.addAll(response.data().all_product().items());
                         binding.recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-                    }else {
-                        Toast.makeText(ProductActivity.this, "No more items", Toast.LENGTH_SHORT).show();
                     }
-
-
                 });
             }
 

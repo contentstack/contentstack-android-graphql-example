@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_ENDPOINT", "\"https://graphql.contentstack.io/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
+            buildConfigField "String", "BASE_URL", "\"https://graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
         }
         release {
             minifyEnabled false
