@@ -125,8 +125,8 @@ okHttpClient = new OkHttpClient.Builder().addInterceptor(chain -> {
     Request.Builder builder = original.newBuilder().method(original.method(), original.body());      
         return chain.proceed(builder.build());    
     }).build();    
-        
-apolloClient = ApolloClient.builder().serverUrl(ContentstackApp.BASE_URL)    
+String BASE_URL = "https://graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development";
+apolloClient = ApolloClient.builder().serverUrl(BASE_URL)    
     .okHttpClient(okHttpClient)    
     .build();  
 ```
