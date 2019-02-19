@@ -76,7 +76,7 @@ dependencies {
  
 ``` 
   
-Refer the [Apollo-Android](https://www.apollographql.com/docs/android/) documentation for more details on what needs to be performed to add the Apollo SDK for Android into your project.  
+The latest Gradle plugin version is [here](https://bintray.com/apollographql/android/apollo-gradle-plugin/_latestVersion). Refer the [Apollo-Android](https://www.apollographql.com/docs/android/) documentation for more details on what needs to be performed to add the Apollo SDK for Android into your project.  
   
 ## Step 7: Download your schema  
   
