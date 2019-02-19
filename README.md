@@ -6,9 +6,7 @@
 We have created a sample product catalog app that is built using Contentstack’s Android SDK. The content of this app is powered by Contentstack GraphQL APIs, and the app uses Apollo client on the client side to consume GraphQL APIs.
 
 This document covers the steps to get this app up and running for you. Try out the app and play with it, before building bigger and better applications.  
-  
-Screenshot  
-  
+    
 <img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/master/app/src/main/java/com/contentstack/graphql/screenshot/ProductList.png' width='320' height='600'/>  
   
 ## Prerequisites  
