@@ -23,8 +23,6 @@ In this tutorial, we will first go through the steps involved in configuring Con
   
 ## Step 2: Add a publishing environment  
 [Add a publishing environment](https://www.contentstack.com/docs/guide/environments#add-an-environment) to publish your content in Contentstack. Provide the necessary details as per your requirement. Read more about [environments](https://www.contentstack.com/docs/guide/environments).  
-  
-## Step 3: Add Delivery Token
 
   
 ## Step 3: Import content types  
