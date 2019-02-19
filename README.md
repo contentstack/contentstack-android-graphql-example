@@ -120,11 +120,10 @@ After downloading the schema and creating the queries, let’s create an instanc
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
   
  ``` 
-String BASE_URL = "https://graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development";
+String BASE_URL = "https://graphql.contentstack.com/stacks/api_key?access_token=environment-specific_delivery_token&environment=environment_name";
 OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
 ApolloClient apolloClient = ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();    
-    
-```
+ ```
   
 This creates our Apollo Client which is ready to fetch data.  
   
