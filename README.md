@@ -90,7 +90,7 @@ In this step, you need to construct a GraphQL schema file for your content model
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
 
 ```  
-apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
+apollo-codegen introspect-schema “https://graphql.contentstack.io/stacks/api_key?access_token=environment-specific_delivery_token&environment=environment_name” --output schema.json  
 ```  
 
 Note: Place the schema file next to your .graphql files or within the /app/src/main/graphql/com/contentstack/graphql directory.
