@@ -22,7 +22,10 @@ In this tutorial, we will first go through the steps involved in configuring Con
   Log in to your Contentstack account, and [create a new stack](https://www.contentstack.com/docs/guide/stack#create-a-new-stack). Read more about [stack](https://www.contentstack.com/docs/guide/stack).  
   
 ## Step 2: Add a publishing environment  
-  [Add a publishing environment](https://www.contentstack.com/docs/guide/environments#add-an-environment) to publish your content in Contentstack. Provide the necessary details as per your requirement. Read more about [environments](https://www.contentstack.com/docs/guide/environments).  
+[Add a publishing environment](https://www.contentstack.com/docs/guide/environments#add-an-environment) to publish your content in Contentstack. Provide the necessary details as per your requirement. Read more about [environments](https://www.contentstack.com/docs/guide/environments).  
+  
+## Step 3: Add Delivery Token
+
   
 ## Step 3: Import content types  
   For this app, we need just one content type: Product. Here’s what it’s needed for:  
@@ -39,12 +42,14 @@ Now that all the content types are ready, let’s add some content for your Stac
 Now that we have created the sample data, it’s time to use and configure the presentation layer.  
   
 ## Step 5: Clone and configure application  
-  
+
 To get your app up and running quickly, we have created a sample Android app for this project. You need to download it and change the configuration. Download the app using the command given below:  
   
 ```
 $ git clone https://github.com/contentstack/contentstack-android-graphql-example.git  
 ```
+
+Once you have downloaded the project, add your Contentstack API Key, Delivery Token, and Environment to the project during the SDK initialization step. (Learn how to find your Stack's [API Key and Delivery Token](https://www.contentstack.com/docs/guide/stack#edit-a-stack). Read more about [Environments](https://www.contentstack.com/docs/guide/environments).)
 
 ## Step 6: Add Gradle plugin  
   
@@ -97,7 +102,7 @@ Use this interface to write and test your queries.
   
 Open a browser of your choice and hit the URL given below (after entering the required details):  
 ```
-https://graphql.contentstack.io/stacks/api_key/explore?access_token=environment-specific_delivery_token&environment=environment_name  
+https://www.contentstack.com/docs/apis/graphql-content-delivery-api/explorer/
 ```
 The following is an example of a sample query for GraphQL:  
   
