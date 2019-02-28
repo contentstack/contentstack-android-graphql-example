@@ -100,7 +100,8 @@ Use this interface to write and test your queries.
   
 Open a browser of your choice and hit the URL given below (after entering the required details):  
 ```
-https://www.contentstack.com/docs/apis/graphql-content-delivery-api/explorer/
+https://www.contentstack.com/docs/apis/graphql-content-delivery-api/explorer?api_key=<API_KEY>&access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>
+
 ```
 The following is an example of a sample query for GraphQL:  
   
