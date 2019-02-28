@@ -47,7 +47,7 @@ To get your app up and running quickly, we have created a sample Android app for
 $ git clone https://github.com/contentstack/contentstack-android-graphql-example.git  
 ```
 
-Once you have downloaded the project, add your Contentstack API Key, Delivery Token, and Environment to the project during the SDK initialization step. (Learn how to find your Stack's [API Key and Delivery Token](https://www.contentstack.com/docs/guide/stack#edit-a-stack). Read more about [Environments](https://www.contentstack.com/docs/guide/environments).)
+Once you have downloaded the project, add your Contentstack API Key, Delivery Token, and Environment to the project during the SDK initialization step. ((Learn how to find your Stack's [API Key](https://www.contentstack.com/docs/guide/stack#edit-a-stack) and [Delivery Token](https://www.contentstack.com/docs/guide/tokens#create-a-delivery-token). Read more about [Environments](https://www.contentstack.com/docs/guide/environments).)
 
 ## Step 6: Add Gradle plugin  
   
