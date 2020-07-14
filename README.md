@@ -87,8 +87,9 @@ In this step, you need to construct a GraphQL schema file for your content model
   
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
 
-```  
-apollo schema:download --endpoint="https://dev8-origin-graphql.contentstack.com/stacks/<API_KEY>/explore?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>"
+``` 
+./gradlew downloadApolloSchema --endpoint="https://dev8-origin-graphql.contentstack.com/stacks/<API_KEY>/explore?environment=<ENVIRONMENT_NAME>" \
+  --header="access_token: <ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>" 
 ```  
 
 Note: Place the schema file next to your .graphql files or within the /app/src/main/graphql/com/contentstack/graphql directory.
