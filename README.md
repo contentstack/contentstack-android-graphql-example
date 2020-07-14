@@ -7,7 +7,7 @@ We have created a sample product catalog app that is built using Apollo Android 
 
 This document covers the steps to get this app up and running for you. Try out the app and play with it, before building bigger and better applications.  
     
-<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/master/app/src/main/java/com/contentstack/graphql/screenshot/ProductList.png' width='320' height='600'/>  
+<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/V8/app/src/main/assets/products.png?raw=true' width='300' height='500'/>  
   
 ## Prerequisites  
   
@@ -88,7 +88,6 @@ In this step, you need to construct a GraphQL schema file for your content model
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
 
 ```  
-apollo schema:download --endpoint="https://graphql.contentstack.com/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>"
 apollo schema:download --endpoint="https://dev8-origin-graphql.contentstack.com/stacks/<API_KEY>/explore?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>"
 ```  
 
