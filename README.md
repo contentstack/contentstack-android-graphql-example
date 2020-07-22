@@ -92,6 +92,14 @@ Download the GraphQL schema for your content model using Apollo CLI or you can u
   --header="access_token: <ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>" 
 ```  
 
+## Or: Download 'schema.json' Form the contentstack:
+
+Follow the steps in the repository to download the schema file:
+```
+https://github.com/contentstack/contentstack-graphql-schema-download
+```
+
+
 Note: Place the schema file next to your .graphql files or within the /app/src/main/graphql/com/contentstack/graphql directory.
 
 ## Step 8: Write GraphQL Queries  
