@@ -13,8 +13,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
-            buildConfigField "String", "DEV8_URL_TEST", "\"https://dev8-origin-graphql.contentstack.com/stacks/blt572760da0b280bbe?access_token=csd7775b11da0d8f086aabd80e&environment=development\""
+            buildConfigField "String", "BASE_URL", "\"https://origin-graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
             buildConfigField "String", "DEV8_URL", "\"https://dev8-origin-graphql.contentstack.com/stacks/blt572760da0b280bbe/explore?access_token=csd7775b11da0d8f086aabd80e&environment=development\""
         }
         release {
@@ -49,6 +48,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'org.jetbrains:annotations:16.0.1'
-
     implementation 'com.apollographql.apollo:apollo-runtime:2.2.2'
 }
