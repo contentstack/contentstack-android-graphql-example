@@ -1,0 +1,19 @@
+query ALLProducts($skip:Int, $limit:Int) {
+all_product(locale: "en-us", skip:$skip, limit:$limit){
+    items{
+        title
+        price
+        url
+        description
+        featured_imageConnection{
+            totalCount
+            edges{
+                node{
+                    title
+                    url
+                }
+            }
+        }
+    }
+}
+}

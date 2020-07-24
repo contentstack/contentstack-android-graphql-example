@@ -2,7 +2,7 @@ package com.contentstack.graphql.product.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import com.contentstack.graphql.AllProductQuery;
+import com.contentstack.graphql.ALLProductsQuery;
 import com.contentstack.graphql.R;
 import com.contentstack.graphql.product.holder.ViewHolder;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    private List<AllProductQuery.Item> apolloResp;
+    private List<ALLProductsQuery.Item> apolloResp;
 
     public ProductAdapter() {
         this.apolloResp = new ArrayList<>();
@@ -38,7 +38,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
         return apolloResp.size();
     }
 
-    public void addAll(List<AllProductQuery.Item> newResp) {
+    public void addAll(List<ALLProductsQuery.Item> newResp) {
         int initialSize = newResp.size();
         apolloResp.addAll(newResp);
         notifyItemRangeInserted(initialSize, newResp.size());

@@ -7,7 +7,7 @@ We have created a sample product catalog app that is built using Apollo Android 
 
 This document covers the steps to get this app up and running for you. Try out the app and play with it, before building bigger and better applications.  
     
-<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/master/app/src/main/java/com/contentstack/graphql/screenshot/ProductList.png' width='320' height='600'/>  
+<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/V8/app/src/main/assets/products.png?raw=true' width='300' height='620'/> 
   
 ## Prerequisites  
   
@@ -69,7 +69,7 @@ buildscript {
 Next, add the Gradle plugin within your app module’s build.gradle file as follows:
 
 ``` 
-apply plugin: 'com.apollographql.android'
+apply plugin: 'com.apollographql.apollo'
 
 dependencies {
   ...
@@ -87,9 +87,10 @@ In this step, you need to construct a GraphQL schema file for your content model
   
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
 
-```  
-apollo schema:download --endpoint="https://graphql.contentstack.com/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>"
-```  
+``` 
+./gradlew downloadApolloSchema --endpoint="https://host/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>" \
+  --header="access_token: <ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>" 
+```
 
 Note: Place the schema file next to your .graphql files or within the /app/src/main/graphql/com/contentstack/graphql directory.
 
@@ -100,19 +101,28 @@ Use this interface to write and test your queries.
   
 Open a browser of your choice and hit the URL given below (after entering the required details):  
 ```
-https://www.contentstack.com/docs/apis/graphql-content-delivery-api/explorer/?api_key=<API_KEY>&access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>
-
+https://host/stacks/<API_KEY>/explore?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>
 ```
 The following is an example of a sample query for GraphQL:  
   
  ```
- query allProduct {    
- all_Product(locale: "en-us") {    
-      title    
-      price    
-      featured_image {    
-      url    
-    }}}
+ query ALLProducts($skip:Int, $limit:Int) {
+ all_product(locale: "en-us", skip:$skip, limit:$limit){
+     items{
+         title
+         price
+         url
+         description
+         featured_imageConnection{
+             edges{
+                 node{
+                     title
+                     url
+                 }
+             }
+         }
+     }
+ }}
    ```  
 
 Next, you need to create an instance of Apollo Client to fetch data.
@@ -124,7 +134,7 @@ After downloading the schema and creating the queries, let’s create an instanc
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
   
  ``` 
-String BASE_URL = "https://graphql.contentstack.com/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>";
+String BASE_URL = "host/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>";
 OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
 ApolloClient apolloClient = ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();    
  ```
@@ -139,12 +149,17 @@ Finally, integrate ApolloClient into the app and pass in the generated queries. 
 apolloClient.query(AllProductQuery.builder().build()).enqueue(new      
 ApolloCall.Callback<AllProductQuery.Data>() {    
     @Override    
-    public  void  onResponse(@NotNull Response<AllProductQuery.Data> response) {    
-    Log.d(TAG, response.toString());    
+    public  void  onResponse(@NotNull Response<AllProductQuery.Data> response) {        
+        response.data().all_product().items().stream().forEach(item -> {
+              Log.i("Title", item.title());
+              Log.i("Price", item.price().toString());
+              Log.i("description", item.description());
+              Log.i("image", item.featured_imageConnection().edges().get(0).node().url());
+         });
     }    
     @Override    
     public  void  onFailure(@NotNull ApolloException e) {    
-    Log.e(TAG, e.getLocalizedMessage());    
+        Log.e(TAG, e.getLocalizedMessage());    
     }    
 });
 ```
@@ -152,7 +167,7 @@ Additionally, the snippet above sets the Stack and the Locale to be used by the 
 
 ##  More Resources
 
--   [Getting started with Android SDK](https://www.contentstack.com/docs/platforms/android)
--   [Using GraphQL queries with Apollo client Android SDK](https://www.contentstack.com/docs/guide/contentstack-graphql-api/using-graphql-with-apollo-client-android-sdk)
--   [GraphQL API documentation ](https://www.contentstack.com/docs/apis/graphql-content-delivery-api/)
+-   [Getting started with Android SDK](https://www.contentstack.com/docs/developers/android)
+-   [Using GraphQL queries with Apollo client Android SDK](https://www.contentstack.com/docs/developers/use-the-graphql-queries-with-apollo-sdks/use-graphql-queries-with-apollo-client-android-sdk)
+-   [GraphQL API documentation](https://www.contentstack.com/docs/developers/apis/graphql-content-delivery-api)
 
