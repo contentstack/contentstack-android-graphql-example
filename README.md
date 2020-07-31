@@ -92,6 +92,11 @@ Download the GraphQL schema for your content model using Apollo CLI or you can u
   --header="access_token: <ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>" 
 ```
 
+## Download schema using Contentstack schema download
+    
+Download the GraphQL schema for your content model using [Contentstack GraphQL Schema Download](https://github.com/contentstack/contentstack-graphql-schema-download.git), and place it in the root directory of your Android project
+
+
 Note: Place the schema file next to your .graphql files or within the /app/src/main/graphql/com/contentstack/graphql directory.
 
 ## Step 8: Write GraphQL Queries  
