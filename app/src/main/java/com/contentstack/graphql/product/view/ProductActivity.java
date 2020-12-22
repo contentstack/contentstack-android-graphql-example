@@ -23,8 +23,8 @@ import com.contentstack.graphql.R;
 import com.contentstack.graphql.product.adapter.ProductAdapter;
 
 import org.jetbrains.annotations.NotNull;
-import static com.contentstack.graphql.BuildConfig.BASE_URL;
-//import static com.contentstack.graphql.BuildConfig.DEV8_URL;
+//import static com.contentstack.graphql.BuildConfig.BASE_URL;
+import static com.contentstack.graphql.BuildConfig.DEV8_URL;
 
 
 public class ProductActivity extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private ApolloClient getApolloClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        return ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();
+        return ApolloClient.builder().serverUrl(DEV8_URL).okHttpClient(okHttpClient).build();
     }
 
 
@@ -67,7 +67,6 @@ public class ProductActivity extends AppCompatActivity {
 
         getProducts(mTotalItemCount, mPostsPerPage);
         binding.refreshContainer.setOnRefreshListener(() -> getProducts(mTotalItemCount, mPostsPerPage));
-
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NotNull RecyclerView recyclerView, int dx, int dy) {
@@ -101,7 +100,7 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Response<ALLProductsQuery.Data> response) {
                 assert response.data() != null;
-                response.data().all_product().items().stream().forEach(item -> {
+                response.data().all_product().items().forEach(item -> {
                     Log.i("Title", item.title());
                     Log.i("Price", item.price().toString());
                     Log.i("description", item.description());
@@ -112,7 +111,7 @@ public class ProductActivity extends AppCompatActivity {
                     binding.refreshContainer.setRefreshing(false);
 
                     if (response.data().all_product().items().size() > 0) {
-                        //Log.i(TAG, response.data().all_product().items().toString());
+                        Log.i(TAG, response.data().all_product().items().toString());
                         adapter.addAll(response.data().all_product().items());
                         binding.recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
@@ -123,7 +122,6 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull ApolloException e) {
                 Log.e("onFailure", e.getMessage());
-
                 ProductActivity.this.runOnUiThread(() -> {
                     binding.refreshContainer.setRefreshing(false);
                     binding.tvError.setVisibility(View.VISIBLE);
