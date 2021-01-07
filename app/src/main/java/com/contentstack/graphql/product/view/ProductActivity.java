@@ -29,7 +29,7 @@ import static com.contentstack.graphql.BuildConfig.DEV8_URL;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private String TAG = ProductActivity.class.getSimpleName();
+    private final String TAG = ProductActivity.class.getSimpleName();
     private ProductsLayoutBinding binding;
     private ProductAdapter adapter;
     private GridLayoutManager gridLayoutManager;

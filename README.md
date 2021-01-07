@@ -88,7 +88,7 @@ In this step, you need to construct a GraphQL schema file for your content model
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
 
 ``` 
-./gradlew downloadApolloSchema --endpoint="https://host/v1/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>" \
+./gradlew downloadApolloSchema --endpoint="https://host/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>" \
   --header="access_token: <ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>" 
 ```
 
@@ -106,7 +106,7 @@ Use this interface to write and test your queries.
   
 Open a browser of your choice and hit the URL given below (after entering the required details):  
 ```
-https://host/v1/stacks/<API_KEY>/explore?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>
+https://host/stacks/<API_KEY>/explore?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>
 ```
 The following is an example of a sample query for GraphQL:  
   
@@ -139,7 +139,7 @@ After downloading the schema and creating the queries, let’s create an instanc
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
   
  ``` 
-String BASE_URL = "host/v1/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>";
+String BASE_URL = "host/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>";
 OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
 ApolloClient apolloClient = ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();    
  ```
