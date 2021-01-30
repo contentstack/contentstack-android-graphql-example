@@ -2,18 +2,18 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.apollographql.apollo'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.contentstack.graphql"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://origin-graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
+            buildConfigField "String", "BASE_URL", "\"https://graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
             buildConfigField "String", "DEV8_URL", "\"https://dev8-origin-graphql.contentstack.com/stacks/blt572760da0b280bbe/explore?access_token=csd7775b11da0d8f086aabd80e&environment=development\""
         }
         release {

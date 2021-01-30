@@ -1,5 +1,6 @@
 package com.contentstack.graphql.product.holder;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void setData(ALLProductsQuery.Item data) {
 
         txtTitle.setText(data.title());
