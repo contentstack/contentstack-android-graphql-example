@@ -7,7 +7,7 @@ We have created a sample product catalog app that is built using Apollo Android 
 
 This document covers the steps to get this app up and running for you. Try out the app and play with it, before building bigger and better applications.  
     
-<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/V8/app/src/main/assets/products.png?raw=true' width='300' height='620'/> 
+<img src='https://github.com/contentstack/contentstack-android-graphql-example/blob/master/app/src/main/assets/products.png?raw=true' width='300' height='620'/> 
   
 ## Prerequisites  
   
