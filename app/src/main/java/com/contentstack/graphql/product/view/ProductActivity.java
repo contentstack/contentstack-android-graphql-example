@@ -18,19 +18,22 @@ import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.contentstack.graphql.ALLProductsQuery;
+import com.contentstack.graphql.BuildConfig;
 import com.contentstack.graphql.databinding.ProductsLayoutBinding;
 import com.contentstack.graphql.R;
 import com.contentstack.graphql.product.adapter.ProductAdapter;
 
 import org.jetbrains.annotations.NotNull;
-//import static com.contentstack.graphql.BuildConfig.BASE_URL;
-import static com.contentstack.graphql.BuildConfig.BASE_URL;
-import static com.contentstack.graphql.BuildConfig.DEV8_URL;
 
 
 public class ProductActivity extends AppCompatActivity {
 
     private final String TAG = ProductActivity.class.getSimpleName();
+    private final String APIkey = BuildConfig.APIKey;
+    private final String deliveryToken = BuildConfig.deliveryToken;
+    private final String environment = BuildConfig.environment;
+
+    private final String BASE_URL = "https://graphql.contentstack.com/stacks/"+APIkey+"?access_token="+deliveryToken+"&environment="+environment;
     private ProductsLayoutBinding binding;
     private ProductAdapter adapter;
     private GridLayoutManager gridLayoutManager;
@@ -52,6 +55,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private ApolloClient getApolloClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Log.e("Graphql URL:", BASE_URL);
         return ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();
     }
 

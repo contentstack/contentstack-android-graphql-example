@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.apollographql.apollo'
 
 android {
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.contentstack.graphql"
@@ -13,8 +15,11 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://graphql.contentstack.com/stacks/blt292960b854e5170e?access_token=csf77a123fda5cc627a0363a49&environment=development\""
-            buildConfigField "String", "DEV8_URL", "\"https://dev8-origin-graphql.contentstack.com/stacks/blt572760da0b280bbe/explore?access_token=csd7775b11da0d8f086aabd80e&environment=development\""
+            buildConfigField "String", "APIKey", localProperties['APIKey']
+            buildConfigField "String", "deliveryToken", localProperties['deliveryToken']
+            buildConfigField "String", "environment", localProperties['environment']
+            buildConfigField "String", "GRAPHQL_URL", "\"https://graphql.contentstack.com/stacks/api_key?access_token=deliveryToken&environment=env\""
+            buildConfigField "String", "DEV_GQL_URL", "\"https://dev8-origin-graphql.contentstack.com/stacks/api_key/explore?access_token=delivery_token&environment=env\""
         }
         release {
             minifyEnabled false
