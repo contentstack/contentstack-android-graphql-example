@@ -43,7 +43,7 @@ Now that we have created the sample data, it’s time to use and configure the p
 
 To get your app up and running quickly, we have created a sample Android app for this project. You need to download it and change the configuration. Download the app using the command given below:  
   
-```
+```html
 $ git clone https://github.com/contentstack/contentstack-android-graphql-example.git  
 ```
 
@@ -105,12 +105,12 @@ Contentstack provides a GraphQL playground, which is a GraphiQL interface, to te
 Use this interface to write and test your queries.
   
 Open a browser of your choice and hit the URL given below (after entering the required details):  
-```
+```html
 https://www.contentstack.com/docs/developers/apis/graphql-content-delivery-api/explorer/
 ```
 The following is an example of a sample query for GraphQL:  
   
- ```
+ ```java
  query ALLProducts($skip:Int, $limit:Int) {
  all_product(locale: "en-us", skip:$skip, limit:$limit){
      items{
@@ -137,12 +137,12 @@ Next, you need to create an instance of Apollo Client to fetch data.
 
 After downloading the schema and creating the queries, let’s create an instance of ApolloClient and point it at the GraphQL server.
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
-  
- ``` 
+
+```java
 String BASE_URL = "host/stacks/<API_KEY>?access_token=<ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>&environment=<ENVIRONMENT_NAME>";
 OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
 ApolloClient apolloClient = ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();    
- ```
+```
   
 This creates our Apollo Client which is ready to fetch data.  
   
@@ -150,7 +150,7 @@ This creates our Apollo Client which is ready to fetch data.
    
 Finally, integrate ApolloClient into the app and pass in the generated queries. write the logic for handling already-parsed responses.  
                        
-```
+```java
 apolloClient.query(AllProductQuery.builder().build()).enqueue(new      
 ApolloCall.Callback<AllProductQuery.Data>() {    
     @Override    
