@@ -53,7 +53,7 @@ Once you have downloaded the project, add your Contentstack API Key, Delivery To
   
 To add the Gradle plugin, you need to first install the following dependencies into the root build.gradle file as follows:  
   
-```
+```java
 buildscript {
   repositories {
     jcenter()
@@ -68,7 +68,7 @@ buildscript {
 
 Next, add the Gradle plugin within your app module’s build.gradle file as follows:
 
-``` 
+```java
 apply plugin: 'com.apollographql.apollo'
 
 dependencies {
@@ -87,7 +87,7 @@ In this step, you need to construct a GraphQL schema file for your content model
   
 Download the GraphQL schema for your content model using Apollo CLI or you can use apollo-codegen as follows:
 
-``` 
+```java
 ./gradlew downloadApolloSchema --endpoint="https://host/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>" \
   --header="access_token: <ENVIRONMENT_SPECIFIC_DELIVERY_TOKEN>" 
 ```
