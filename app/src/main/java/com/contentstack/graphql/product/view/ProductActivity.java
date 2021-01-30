@@ -24,6 +24,7 @@ import com.contentstack.graphql.product.adapter.ProductAdapter;
 
 import org.jetbrains.annotations.NotNull;
 //import static com.contentstack.graphql.BuildConfig.BASE_URL;
+import static com.contentstack.graphql.BuildConfig.BASE_URL;
 import static com.contentstack.graphql.BuildConfig.DEV8_URL;
 
 
@@ -51,7 +52,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private ApolloClient getApolloClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        return ApolloClient.builder().serverUrl(DEV8_URL).okHttpClient(okHttpClient).build();
+        return ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();
     }
 
 

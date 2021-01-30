@@ -10,15 +10,139 @@
         {
           "kind": "OBJECT",
           "name": "Query",
-          "description": "Operation",
+          "description": null,
           "fields": [
             {
-              "name": "product",
-              "description": "Fetch a single entry",
+              "name": "assets",
+              "description": null,
               "args": [
                 {
                   "name": "uid",
-                  "description": "Item 'uid' that you wish to query",
+                  "description": "Uid of the asset to be queried (required)",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "locale",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": "\"en-us\""
+                },
+                {
+                  "name": "fallback_locale",
+                  "description": "If the asset doesn't exist in the queried locale, setting it to true would return the asset published in the fallback locale (if it is published in the fallback locale)",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SysAsset",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "all_assets",
+              "description": null,
+              "args": [
+                {
+                  "name": "where",
+                  "description": "Query filter for assets",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "SysAssetWhere",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "locale",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": "\"en-us\""
+                },
+                {
+                  "name": "order_by",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "SysAssetOrderBy",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": "[]"
+                },
+                {
+                  "name": "skip",
+                  "description": "Number of items to be skipped",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": "0"
+                },
+                {
+                  "name": "limit",
+                  "description": "Total number of items to be returned in the result (max allowed is 100)",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": "25"
+                },
+                {
+                  "name": "fallback_locale",
+                  "description": "If the asset doesn't exist in the queried locale, setting it to true would return the asset published in the fallback locale (if it is published in the fallback locale)",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AllSysAsset",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "product",
+              "description": null,
+              "args": [
+                {
+                  "name": "uid",
+                  "description": "Item uid that you wish to query",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -45,14 +169,14 @@
                   "defaultValue": "\"en-us\""
                 },
                 {
-                  "name": "version",
-                  "description": null,
+                  "name": "fallback_locale",
+                  "description": "If the entry doesn't exist in the queried locale, setting it to true would return the entry published in the fallback locale (if it is published in the fallback locale)",
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "Boolean",
                     "ofType": null
                   },
-                  "defaultValue": null
+                  "defaultValue": "false"
                 }
               ],
               "type": {
@@ -65,11 +189,11 @@
             },
             {
               "name": "all_product",
-              "description": "Fetch multiple entries",
+              "description": null,
               "args": [
                 {
                   "name": "where",
-                  "description": "Query filters for list content type",
+                  "description": null,
                   "type": {
                     "kind": "INPUT_OBJECT",
                     "name": "ProductWhere",
@@ -81,13 +205,9 @@
                   "name": "locale",
                   "description": null,
                   "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
                   },
                   "defaultValue": "\"en-us\""
                 },
@@ -103,11 +223,11 @@
                       "ofType": null
                     }
                   },
-                  "defaultValue": "[]"
+                  "defaultValue": null
                 },
                 {
                   "name": "skip",
-                  "description": "Items to be skipped before the result",
+                  "description": null,
                   "type": {
                     "kind": "SCALAR",
                     "name": "Int",
@@ -117,140 +237,28 @@
                 },
                 {
                   "name": "limit",
-                  "description": "Number of items to be returned in a result. Max is 100",
+                  "description": null,
                   "type": {
                     "kind": "SCALAR",
                     "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": "25"
+                },
+                {
+                  "name": "fallback_locale",
+                  "description": "If the entry doesn't exist in the queried locale, setting it to true would return the entry published in the fallback locale (if it is published in the fallback locale)",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
                 }
               ],
               "type": {
                 "kind": "OBJECT",
                 "name": "AllProduct",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "all_assets",
-              "description": "Query on contentstack assets",
-              "args": [
-                {
-                  "name": "where",
-                  "description": "Query filter for assets",
-                  "type": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "AssetsWhere",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "locale",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": "\"en-us\""
-                },
-                {
-                  "name": "order_by",
-                  "description": null,
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "AssetOrderBy",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": "[]"
-                },
-                {
-                  "name": "skip",
-                  "description": "Items to be skipped before the result",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": "0"
-                },
-                {
-                  "name": "limit",
-                  "description": "Number of items to be returned in a result. Max is 100",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": "25"
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "AllAssets",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "assets",
-              "description": "Query on contentstack assets",
-              "args": [
-                {
-                  "name": "uid",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "locale",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": "\"en-us\""
-                },
-                {
-                  "name": "version",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Asset",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -274,8 +282,8 @@
         },
         {
           "kind": "SCALAR",
-          "name": "Int",
-          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+          "name": "Boolean",
+          "description": "The `Boolean` scalar type represents `true` or `false`.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -284,12 +292,12 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Product",
-          "description": "Content type details",
+          "name": "SysAsset",
+          "description": null,
           "fields": [
             {
               "name": "title",
-              "description": "Text field",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -301,180 +309,14 @@
             },
             {
               "name": "url",
-              "description": "Text field",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "description",
-              "description": "Text field",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "featured_imageConnection",
-              "description": "Asset field",
-              "args": [
-                {
-                  "name": "skip",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": "0"
-                },
-                {
-                  "name": "limit",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": "100"
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "AssetConnection",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "price",
-              "description": "Number field",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "system",
-              "description": "Contentstack's system fields",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "EntrySystemField",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AssetConnection",
-          "description": null,
-          "fields": [
-            {
-              "name": "totalCount",
-              "description": "Total no. of assets",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "edges",
-              "description": "Asset edges",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "AssetEdge",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AssetEdge",
-          "description": null,
-          "fields": [
-            {
-              "name": "node",
-              "description": "Asset node",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Asset",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "Asset",
-          "description": null,
-          "fields": [
-            {
-              "name": "title",
-              "description": "asset title",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "url",
-              "description": "asset url",
+              "description": null,
               "args": [
                 {
                   "name": "transform",
                   "description": "Contentstack Image Delivery API is used to retrieve, manipulate and/or convert image files of your Contentstack account and deliver it to your web or mobile properties",
                   "type": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TransformUrl",
+                    "name": "SysAssetTransformUrl",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -490,7 +332,7 @@
             },
             {
               "name": "content_type",
-              "description": "type of asset ex: .png, .jpeg etc.",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -502,7 +344,7 @@
             },
             {
               "name": "filename",
-              "description": "asset filename",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -514,7 +356,7 @@
             },
             {
               "name": "file_size",
-              "description": "asset file_size",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -526,7 +368,7 @@
             },
             {
               "name": "description",
-              "description": "asset description",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -538,11 +380,11 @@
             },
             {
               "name": "dimension",
-              "description": "dimensions of the asset",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "AssetDimension",
+                "name": "SysAssetDimension",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -554,7 +396,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "AssetSystemField",
+                "name": "SysAssetSystemField",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -568,7 +410,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "TransformUrl",
+          "name": "SysAssetTransformUrl",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -597,7 +439,7 @@
               "description": "Format parameter lets you converts a given image from one format to another",
               "type": {
                 "kind": "ENUM",
-                "name": "ImageFormats",
+                "name": "SysAssetImageFormats",
                 "ofType": null
               },
               "defaultValue": null
@@ -607,7 +449,7 @@
               "description": "The disable parameter disables the functionality that is enabled by default",
               "type": {
                 "kind": "ENUM",
-                "name": "DisableValues",
+                "name": "SysAssetDisableValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -617,7 +459,7 @@
               "description": "Fit parameter enables you to fit the given image properly within the specified height and width",
               "type": {
                 "kind": "ENUM",
-                "name": "FitValues",
+                "name": "SysAssetFitValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -657,7 +499,7 @@
               "description": "The orient parameter lets you control the cardinal orientation of the given image",
               "type": {
                 "kind": "ENUM",
-                "name": "OrientValues",
+                "name": "SysAssetOrientValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -677,7 +519,7 @@
               "description": null,
               "type": {
                 "kind": "ENUM",
-                "name": "OverlayAlignValues",
+                "name": "SysAssetOverlayAlignValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -687,7 +529,7 @@
               "description": "The overlay_repeat parameter lets you define how the overlay image will be repeated on the given image",
               "type": {
                 "kind": "ENUM",
-                "name": "OverlayRepeatValues",
+                "name": "SysAssetOverlayRepeatValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -697,7 +539,7 @@
               "description": "When the auto parameter is set to webp, it enables WebP image support. WebP images have higher compression rate with minimum loss of quality.",
               "type": {
                 "kind": "ENUM",
-                "name": "AutoValues",
+                "name": "SysAssetAutoValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -707,7 +549,7 @@
               "description": "The disposition parameter lets you allow image to download or render. ",
               "type": {
                 "kind": "ENUM",
-                "name": "DispositionValues",
+                "name": "SysAssetDispositionValues",
                 "ofType": null
               },
               "defaultValue": null
@@ -769,7 +611,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "ImageFormats",
+          "name": "SysAssetImageFormats",
           "description": null,
           "fields": null,
           "inputFields": null,
@@ -822,7 +664,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "DisableValues",
+          "name": "SysAssetDisableValues",
           "description": null,
           "fields": null,
           "inputFields": null,
@@ -839,7 +681,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "FitValues",
+          "name": "SysAssetFitValues",
           "description": null,
           "fields": null,
           "inputFields": null,
@@ -861,8 +703,18 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "Int",
+          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "ENUM",
-          "name": "OrientValues",
+          "name": "SysAssetOrientValues",
           "description": null,
           "fields": null,
           "inputFields": null,
@@ -909,7 +761,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "OverlayAlignValues",
+          "name": "SysAssetOverlayAlignValues",
           "description": "The overlay_align parameter allows you to put one image on top of another",
           "fields": null,
           "inputFields": null,
@@ -956,7 +808,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "OverlayRepeatValues",
+          "name": "SysAssetOverlayRepeatValues",
           "description": null,
           "fields": null,
           "inputFields": null,
@@ -985,7 +837,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "AutoValues",
+          "name": "SysAssetAutoValues",
           "description": "WEBP images are usually lower in size and have good quality.",
           "fields": null,
           "inputFields": null,
@@ -1002,7 +854,7 @@
         },
         {
           "kind": "ENUM",
-          "name": "DispositionValues",
+          "name": "SysAssetDispositionValues",
           "description": "This parameter allows an image to be downloaded or rendered on page",
           "fields": null,
           "inputFields": null,
@@ -1025,12 +877,12 @@
         },
         {
           "kind": "OBJECT",
-          "name": "AssetDimension",
+          "name": "SysAssetDimension",
           "description": null,
           "fields": [
             {
               "name": "width",
-              "description": "asset dimention-width",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1042,7 +894,7 @@
             },
             {
               "name": "height",
-              "description": "asset dimention-height",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1060,28 +912,24 @@
         },
         {
           "kind": "OBJECT",
-          "name": "AssetSystemField",
+          "name": "SysAssetSystemField",
           "description": null,
           "fields": [
             {
               "name": "publish_details",
-              "description": "Object's publish details",
+              "description": "Item's publish details",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "SystemPublishDetails",
-                  "ofType": null
-                }
+                "kind": "OBJECT",
+                "name": "SystemPublishDetails",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "created_at",
-              "description": "Object creation date",
+              "description": "Item's creation date",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1093,7 +941,7 @@
             },
             {
               "name": "updated_at",
-              "description": "Object updated date",
+              "description": "Date when the item was last updated",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1105,55 +953,43 @@
             },
             {
               "name": "created_by",
-              "description": "Object created by",
+              "description": "Item creator's user id",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "updated_by",
-              "description": "Object updated by",
+              "description": "Item updator's user id",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "uid",
-              "description": "Object's unique identifier",
+              "description": "Item's unique identifier",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "tags",
-              "description": "Tags attached to the object",
+              "description": "Tags attached to the item",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -1169,32 +1005,24 @@
             },
             {
               "name": "version",
-              "description": "Object version",
+              "description": "Item's version",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "content_type_uid",
-              "description": "Object schema type",
+              "description": "Item's schema type",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1236,7 +1064,7 @@
             },
             {
               "name": "time",
-              "description": "Environment",
+              "description": "Time when the object was published",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1248,7 +1076,7 @@
             },
             {
               "name": "user",
-              "description": "Environment",
+              "description": "User ID who published the object",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -1267,547 +1095,7 @@
         {
           "kind": "SCALAR",
           "name": "DateTime",
-          "description": "A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Float",
-          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "EntrySystemField",
-          "description": null,
-          "fields": [
-            {
-              "name": "publish_details",
-              "description": "Object's publish details",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "SystemPublishDetails",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created_at",
-              "description": "Object creation date",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updated_at",
-              "description": "Object updated date",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created_by",
-              "description": "Object created by",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updated_by",
-              "description": "Object updated by",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "uid",
-              "description": "Object's unique identifier",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "tags",
-              "description": "Tags attached to the object",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "version",
-              "description": "Object version",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "content_type_uid",
-              "description": "Object schema type",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "locale",
-              "description": "The locale to which the entry belongs to.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "ProductWhere",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "title",
-              "description": "Match exact value",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "title_ne",
-              "description": "Should not equal",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "title_in",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "title_nin",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "title_exists",
-              "description": "Checks if the field exists",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "title_regex",
-              "description": "Check if the field title exists",
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RegExOptions",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "url",
-              "description": "Match exact value",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "url_ne",
-              "description": "Should not equal",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "url_in",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "url_nin",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "url_exists",
-              "description": "Checks if the field exists",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "url_regex",
-              "description": "Check if the field url exists",
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RegExOptions",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "description",
-              "description": "Match exact value",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "description_ne",
-              "description": "Should not equal",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "description_in",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "description_nin",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "description_exists",
-              "description": "Checks if the field exists",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "description_regex",
-              "description": "Check if the field description exists",
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RegExOptions",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "featured_image",
-              "description": "Query filter for assets",
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "AssetsWhere",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "featured_image_exists",
-              "description": "Checks if the field exists",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price",
-              "description": "Match exact value",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_in",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_nin",
-              "description": "Match from multiple values",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_exists",
-              "description": "Checks if the field exists",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_ne",
-              "description": "Number should not equal",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_lt",
-              "description": "Number should be lower than",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_lte",
-              "description": "Number should be lower than or equal to",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_gt",
-              "description": "Number should be greater than",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "price_gte",
-              "description": "Number should be greater than or equal to",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "AND",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ProductWhere",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "OR",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ProductWhere",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Boolean",
-          "description": "The `Boolean` scalar type represents `true` or `false`.",
+          "description": "This field accepts both ISODateString and ISODateTimeStringexample: 1992-08-14 or 1992-08-14T03:42:00.000Z",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -1816,28 +1104,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "RegExOptions",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "pattern",
-              "description": "RegEx pattern. The options will default to 'i'",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "AssetsWhere",
+          "name": "SysAssetWhere",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -2294,7 +1561,7 @@
               "description": null,
               "type": {
                 "kind": "INPUT_OBJECT",
-                "name": "AssetDimensionFilter",
+                "name": "SysAssetDimensionWhere",
                 "ofType": null
               },
               "defaultValue": null
@@ -2345,7 +1612,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AssetsWhere",
+                  "name": "SysAssetWhere",
                   "ofType": null
                 }
               },
@@ -2359,7 +1626,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "AssetsWhere",
+                  "name": "SysAssetWhere",
                   "ofType": null
                 }
               },
@@ -2372,7 +1639,28 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "AssetDimensionFilter",
+          "name": "RegExOptions",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "pattern",
+              "description": "RegEx pattern. The options will default to 'i'",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SysAssetDimensionWhere",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -2579,6 +1867,1092 @@
         },
         {
           "kind": "ENUM",
+          "name": "SysAssetOrderBy",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "created_at_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "created_at_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updated_at_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updated_at_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AllSysAsset",
+          "description": null,
+          "fields": [
+            {
+              "name": "total",
+              "description": "Total count of assets",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "items",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SysAsset",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Product",
+          "description": null,
+          "fields": [
+            {
+              "name": "title",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "url",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "featured_imageConnection",
+              "description": null,
+              "args": [
+                {
+                  "name": "skip",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": "0"
+                },
+                {
+                  "name": "limit",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": "100"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SysAssetConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "price",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "system",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "EntrySystemField",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SysAssetConnection",
+          "description": null,
+          "fields": [
+            {
+              "name": "totalCount",
+              "description": "Total count of assets present in the connection",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "List of SysAsset edges",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SysAssetEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SysAssetEdge",
+          "description": null,
+          "fields": [
+            {
+              "name": "node",
+              "description": "Asset node",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SysAsset",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Float",
+          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EntrySystemField",
+          "description": null,
+          "fields": [
+            {
+              "name": "publish_details",
+              "description": "Item's publish details",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SystemPublishDetails",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "created_at",
+              "description": "Item's creation date",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updated_at",
+              "description": "Date when the item was last updated",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "created_by",
+              "description": "Item creator's user id",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updated_by",
+              "description": "Item updator's user id",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "uid",
+              "description": "Item's unique identifier",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tags",
+              "description": "Tags attached to the item",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "version",
+              "description": "Item's version",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "content_type_uid",
+              "description": "Item's schema type",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "locale",
+              "description": "The locale to which the entry belongs to.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ProductWhere",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "created_at",
+              "description": "Match the exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_in",
+              "description": "Equal to any of the argument values provided in the list",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_nin",
+              "description": "Do not equal to any of the argument values provided in the list",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_ne",
+              "description": "Value should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_lt",
+              "description": "Result value should be lower than the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_lte",
+              "description": "Result value should be lower than or equal to the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_gt",
+              "description": "result value should be greater than the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "created_at_gte",
+              "description": "result value should be greater than or equal to the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at",
+              "description": "Match the exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_in",
+              "description": "Equal to any of the argument values provided in the list",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_nin",
+              "description": "Do not equal to any of the argument values provided in the list",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_ne",
+              "description": "Value should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_lt",
+              "description": "Result value should be lower than the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_lte",
+              "description": "Result value should be lower than or equal to the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_gt",
+              "description": "result value should be greater than the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updated_at_gte",
+              "description": "result value should be greater than or equal to the provided argument value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "locale",
+              "description": "Match exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "locale_ne",
+              "description": "Should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "locale_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "locale_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "locale_exists",
+              "description": "Check if the field locale exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "locale_regex",
+              "description": "Check if the field locale exists",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RegExOptions",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "uid",
+              "description": "Match exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "uid_ne",
+              "description": "Should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "uid_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "uid_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "uid_exists",
+              "description": "Check if the field uid exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "uid_regex",
+              "description": "Check if the field uid exists",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RegExOptions",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "tags_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "tags_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "title",
+              "description": "Match exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "title_ne",
+              "description": "Should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "title_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "title_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "title_exists",
+              "description": "Checks if the field exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "title_regex",
+              "description": "Check if the field title exists",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RegExOptions",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "url",
+              "description": "Match exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "url_ne",
+              "description": "Should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "url_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "url_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "url_exists",
+              "description": "Checks if the field exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "url_regex",
+              "description": "Check if the field url exists",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RegExOptions",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description",
+              "description": "Match exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description_ne",
+              "description": "Should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description_exists",
+              "description": "Checks if the field exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description_regex",
+              "description": "Check if the field description exists",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RegExOptions",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "featured_image",
+              "description": "Query filter for assets",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SysAssetWhere",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "featured_image_exists",
+              "description": "Checks if the field exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price",
+              "description": "Match exact value",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_in",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_nin",
+              "description": "Match from multiple values",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_exists",
+              "description": "Checks if the field exists",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_ne",
+              "description": "Number should not equal",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_lt",
+              "description": "Number should be lower than",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_lte",
+              "description": "Number should be lower than or equal to",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_gt",
+              "description": "Number should be greater than",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "price_gte",
+              "description": "Number should be greater than or equal to",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "AND",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProductWhere",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "OR",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProductWhere",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
           "name": "ProductOrderBy",
           "description": null,
           "fields": null,
@@ -2619,7 +2993,7 @@
           "fields": [
             {
               "name": "total",
-              "description": "Total count of the items returned",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -2631,7 +3005,7 @@
             },
             {
               "name": "items",
-              "description": "Items of the content type queried",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -2639,80 +3013,6 @@
                 "ofType": {
                   "kind": "OBJECT",
                   "name": "Product",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "AssetOrderBy",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "created_at_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "created_at_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updated_at_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updated_at_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AllAssets",
-          "description": null,
-          "fields": [
-            {
-              "name": "total",
-              "description": "Returns the count of the assets returned",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "items",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Asset",
                   "ofType": null
                 }
               },
