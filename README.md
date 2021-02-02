@@ -139,7 +139,7 @@ After downloading the schema and creating the queries, let’s create an instanc
 Create an instance of OkHttpClient and pass it to the ApolloClient builder as follows:  
 
 ```java
-String BASE_URL = "https://HOST/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>";
+String BASE_URL = "https://<HOST>/stacks/<API_KEY>?environment=<ENVIRONMENT_NAME>";
 OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
 ApolloClient apolloClient = ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();    
 ```
