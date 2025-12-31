@@ -13,10 +13,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.apollographql.apollo.ApolloCall;
-import com.apollographql.apollo.ApolloClient;
-import com.apollographql.apollo.api.Response;
-import com.apollographql.apollo.exception.ApolloException;
+import com.apollographql.apollo3.ApolloCall;
+import com.apollographql.apollo3.ApolloClient;
+import com.apollographql.apollo3.api.ApolloResponse;
+import com.apollographql.apollo3.exception.ApolloException;
 import com.contentstack.graphql.ALLProductsQuery;
 import com.contentstack.graphql.BuildConfig;
 import com.contentstack.graphql.databinding.ProductsLayoutBinding;
@@ -56,7 +56,7 @@ public class ProductActivity extends AppCompatActivity {
     private ApolloClient getApolloClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         Log.e("Graphql URL:", BASE_URL);
-        return ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();
+        return new ApolloClient.Builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();
     }
 
 
@@ -97,31 +97,30 @@ public class ProductActivity extends AppCompatActivity {
     private void getProducts(int skipCount, int limit) {
 
         binding.refreshContainer.setRefreshing(true);
-        getApolloClient().query(ALLProductsQuery.builder()
-                .skip(skipCount)
-                .limit(limit)
-                .build()).enqueue(new ApolloCall.Callback<ALLProductsQuery.Data>() {
+        getApolloClient().query(new ALLProductsQuery(skipCount, limit))
+                .enqueue(new ApolloCall.Callback<ALLProductsQuery.Data>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onResponse(@NotNull Response<ALLProductsQuery.Data> response) {
-                assert response.data() != null;
-                response.data().all_product().items().forEach(item -> {
-                    Log.i("Title", item.title());
-                    Log.i("Price", item.price().toString());
-                    Log.i("description", item.description());
-                    Log.e("image", item.featured_imageConnection().edges().get(0).node().url());
-                });
-                ProductActivity.this.runOnUiThread(() -> {
-                    binding.tvError.setVisibility(View.GONE);
-                    binding.refreshContainer.setRefreshing(false);
+            public void onResponse(@NotNull ApolloResponse<ALLProductsQuery.Data> response) {
+                if (response.data() != null) {
+                    response.data().all_product().items().forEach(item -> {
+                        Log.i("Title", item.title());
+                        Log.i("Price", item.price().toString());
+                        Log.i("description", item.description());
+                        Log.e("image", item.featured_imageConnection().edges().get(0).node().url());
+                    });
+                    ProductActivity.this.runOnUiThread(() -> {
+                        binding.tvError.setVisibility(View.GONE);
+                        binding.refreshContainer.setRefreshing(false);
 
-                    if (response.data().all_product().items().size() > 0) {
-                        Log.i(TAG, response.data().all_product().items().toString());
-                        adapter.addAll(response.data().all_product().items());
-                        binding.recyclerView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                        if (response.data().all_product().items().size() > 0) {
+                            Log.i(TAG, response.data().all_product().items().toString());
+                            adapter.addAll(response.data().all_product().items());
+                            binding.recyclerView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
 
             @Override
