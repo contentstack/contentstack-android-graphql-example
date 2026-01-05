@@ -104,24 +104,25 @@ public class ProductActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(@NotNull Response<ALLProductsQuery.Data> response) {
-                assert response.data() != null;
-                response.data().all_product().items().forEach(item -> {
-                    Log.i("Title", item.title());
-                    Log.i("Price", item.price().toString());
-                    Log.i("description", item.description());
-                    Log.e("image", item.featured_imageConnection().edges().get(0).node().url());
-                });
-                ProductActivity.this.runOnUiThread(() -> {
-                    binding.tvError.setVisibility(View.GONE);
-                    binding.refreshContainer.setRefreshing(false);
+                if (response.data() != null) {
+                    response.data().all_product().items().forEach(item -> {
+                        Log.i("Title", item.title());
+                        Log.i("Price", item.price().toString());
+                        Log.i("description", item.description());
+                        Log.e("image", item.featured_imageConnection().edges().get(0).node().url());
+                    });
+                    ProductActivity.this.runOnUiThread(() -> {
+                        binding.tvError.setVisibility(View.GONE);
+                        binding.refreshContainer.setRefreshing(false);
 
-                    if (response.data().all_product().items().size() > 0) {
-                        Log.i(TAG, response.data().all_product().items().toString());
-                        adapter.addAll(response.data().all_product().items());
-                        binding.recyclerView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                        if (response.data().all_product().items().size() > 0) {
+                            Log.i(TAG, response.data().all_product().items().toString());
+                            adapter.addAll(response.data().all_product().items());
+                            binding.recyclerView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
 
             @Override

@@ -7,9 +7,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Setup local.properties
+        run: |
+          cat << EOF >> local.properties
+          sdk.dir=$ANDROID_HOME
+          EOF
+      
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/gradle@master
+        uses: snyk/actions/setup@master
+      
+      - name: Snyk test
+        run: snyk test --all-sub-projects --fail-on=all
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --fail-on=all --all-sub-projects
