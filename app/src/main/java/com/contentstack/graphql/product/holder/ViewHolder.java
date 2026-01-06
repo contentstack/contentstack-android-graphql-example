@@ -30,14 +30,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     @SuppressLint("SetTextI18n")
     public void setData(ALLProductsQuery.Item data) {
 
-        txtTitle.setText(data.title());
-        txtPrice.setText("$"+data.price());
+        txtTitle.setText(data.title);
+        txtPrice.setText("$"+data.price);
 
         // Case: BASE_URL
-        //Glide.with(iconThumbnail.getContext()).load(data.featured_image().get(0).url()).thumbnail(0.1f).into(iconThumbnail);
+        //Glide.with(iconThumbnail.getContext()).load(data.featured_image.get(0).url).thumbnail(0.1f).into(iconThumbnail);
 
         // CASE: DEV8_URL
-        Glide.with(iconThumbnail.getContext()).load(data.featured_imageConnection().edges().get(0).node().url()).thumbnail(0.1f).into(iconThumbnail);
+        Glide.with(iconThumbnail.getContext()).load(data.featured_imageConnection.edges.get(0).node.url).thumbnail(0.1f).into(iconThumbnail);
     }
 
 }
