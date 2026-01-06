@@ -103,15 +103,15 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     
-    // Apollo GraphQL v4
-    implementation 'com.apollographql.apollo:apollo-runtime:4.0.0'
+    // Apollo GraphQL v4 (updated to fix vulnerabilities)
+    implementation 'com.apollographql.apollo:apollo-runtime:4.1.1'
     
     // Apollo adapters for Java/blocking calls
-    implementation 'com.apollographql.apollo:apollo-adapters:4.0.0'
+    implementation 'com.apollographql.apollo:apollo-adapters:4.1.1'
     
-    // Kotlin coroutines (required for Apollo v4)
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    // Kotlin coroutines (required for Apollo v4) - updated to fix vulnerabilities
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
     
     // Annotations
     implementation 'org.jetbrains:annotations:24.1.0'
