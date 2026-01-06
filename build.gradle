@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.2'
-        classpath 'com.apollographql.apollo3:apollo-gradle-plugin:3.8.5'
+        classpath 'com.apollographql.apollo3:apollo-gradle-plugin:3.8.2'
     }
 }
 
