@@ -23,10 +23,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/setup@master
+      - name: Build Gradle project
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
       
-      - name: Snyk test
-        run: snyk test --all-sub-projects --fail-on=all
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/gradle@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --all-sub-projects --fail-on=upgradable
