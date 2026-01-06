@@ -44,6 +44,32 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    
+    // Enable JUnit 5 (Jupiter) support
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+}
+
+apollo {
+    service("contentstack") {
+        packageName.set("com.contentstack.graphql")
+        
+        // Generate Java models instead of Kotlin
+        generateKotlinModels.set(false)
+        
+        // Apollo v4 configuration
+        // Generates operation output classes
+        generateOperationOutput.set(true)
+        
+        // Use semantic nullability for better null handling
+        generateOptionalOperationVariables.set(true)
+        
+        // Schema location
+        schemaFile.set(file("src/main/graphql/com/contentstack/graphql/schema.json"))
+    }
 }
 
 configurations.all {
@@ -57,18 +83,36 @@ configurations.all {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    testImplementation 'junit:junit:4.13.2'
+    
+    // AndroidX Libraries
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.11.0'
+    
+    // Testing - JUnit 5 (Jupiter) uses Apache 2.0 license
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.10.1' // For JUnit 4 compatibility
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'org.jetbrains:annotations:16.0.1'
-    implementation 'com.apollographql.apollo:apollo-runtime:2.5.14'
+    
+    // Image Loading
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+    
+    // Apollo GraphQL v4
+    implementation 'com.apollographql.apollo:apollo-runtime:4.0.0'
+    
+    // Apollo adapters for Java/blocking calls
+    implementation 'com.apollographql.apollo:apollo-adapters:4.0.0'
+    
+    // Kotlin coroutines (required for Apollo v4)
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    
+    // Annotations
+    implementation 'org.jetbrains:annotations:24.1.0'
 }

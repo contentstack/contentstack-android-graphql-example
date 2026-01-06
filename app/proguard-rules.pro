@@ -19,3 +19,30 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Apollo GraphQL v4 ProGuard Rules
+-keep class com.apollographql.apollo.** { *; }
+-keep class * extends com.apollographql.apollo.api.Query { *; }
+-keep class * extends com.apollographql.apollo.api.Mutation { *; }
+-keep class * extends com.apollographql.apollo.api.Subscription { *; }
+-keep class * extends com.apollographql.apollo.api.Fragment { *; }
+-keepclassmembers class * { @com.apollographql.apollo.api.* <fields>; }
+
+# Keep generated GraphQL models
+-keep class com.contentstack.graphql.** { *; }
+
+# OkHttp
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+# Kotlin
+-keep class kotlin.** { *; }
+-keep class kotlin.Metadata { *; }
+-dontwarn kotlin.**
+-keepclassmembers class **$WhenMappings {
+    <fields>;
+}
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}

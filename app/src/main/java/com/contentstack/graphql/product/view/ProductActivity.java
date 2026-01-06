@@ -1,22 +1,25 @@
 package com.contentstack.graphql.product.view;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import okhttp3.OkHttpClient;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
-import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.api.ApolloResponse;
 import com.apollographql.apollo.exception.ApolloException;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.EmptyCoroutineContext;
+import kotlinx.coroutines.BuildersKt;
 import com.contentstack.graphql.ALLProductsQuery;
 import com.contentstack.graphql.BuildConfig;
 import com.contentstack.graphql.databinding.ProductsLayoutBinding;
@@ -37,6 +40,7 @@ public class ProductActivity extends AppCompatActivity {
     private ProductsLayoutBinding binding;
     private ProductAdapter adapter;
     private GridLayoutManager gridLayoutManager;
+    private ExecutorService executorService;
 
     private int mTotalItemCount = 0;
     private int mLastVisibleItemPosition;
@@ -48,15 +52,26 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.products_layout);
 
+        executorService = Executors.newSingleThreadExecutor();
         getApolloClient();
         setToolbar();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
+    }
+
 
     private ApolloClient getApolloClient() {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         Log.e("Graphql URL:", BASE_URL);
-        return ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build();
+        // Apollo v4 - serverUrl is sufficient, it uses OkHttp by default
+        return new ApolloClient.Builder()
+                .serverUrl(BASE_URL)
+                .build();
     }
 
 
@@ -97,42 +112,71 @@ public class ProductActivity extends AppCompatActivity {
     private void getProducts(int skipCount, int limit) {
 
         binding.refreshContainer.setRefreshing(true);
-        getApolloClient().query(ALLProductsQuery.builder()
-                .skip(skipCount)
-                .limit(limit)
-                .build()).enqueue(new ApolloCall.Callback<ALLProductsQuery.Data>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onResponse(@NotNull Response<ALLProductsQuery.Data> response) {
-                if (response.data() != null) {
-                    response.data().all_product().items().forEach(item -> {
-                        Log.i("Title", item.title());
-                        Log.i("Price", item.price().toString());
-                        Log.i("description", item.description());
-                        Log.e("image", item.featured_imageConnection().edges().get(0).node().url());
+        
+        // Apollo v4 requires coroutines - use runBlocking from Java
+        // Execute in background thread
+        executorService.execute(() -> {
+            try {
+                // Use Kotlin's runBlocking to call the suspend function from Java
+                ApolloResponse<ALLProductsQuery.Data> response = BuildersKt.runBlocking(
+                        EmptyCoroutineContext.INSTANCE,
+                        (scope, continuation) -> getApolloClient().query(
+                                new ALLProductsQuery(
+                                        com.apollographql.apollo.api.Optional.present(skipCount),
+                                        com.apollographql.apollo.api.Optional.present(limit)
+                                )
+                        ).execute(continuation)
+                );
+
+                // Check for errors in response
+                if (response.hasErrors()) {
+                    String errorMessage = response.errors != null && !response.errors.isEmpty() 
+                            ? response.errors.get(0).getMessage() 
+                            : "Unknown error occurred";
+                    Log.e("GraphQL Error", errorMessage);
+                    
+                    ProductActivity.this.runOnUiThread(() -> {
+                        binding.refreshContainer.setRefreshing(false);
+                        binding.tvError.setVisibility(View.VISIBLE);
+                        binding.tvError.setText(String.format("Error Occurred: %s", errorMessage));
                     });
+                    return;
+                }
+
+                // Process successful response
+                if (response.data != null) {
+                    ALLProductsQuery.Data data = response.data;
+                    
+                    // Log data (Java 7 compatible loop)
+                    for (ALLProductsQuery.Item item : data.all_product.items) {
+                        Log.i("Title", item.title);
+                        Log.i("Price", item.price.toString());
+                        Log.i("description", item.description);
+                        if (!item.featured_imageConnection.edges.isEmpty()) {
+                            Log.e("image", item.featured_imageConnection.edges.get(0).node.url);
+                        }
+                    }
+                    
                     ProductActivity.this.runOnUiThread(() -> {
                         binding.tvError.setVisibility(View.GONE);
                         binding.refreshContainer.setRefreshing(false);
 
-                        if (response.data().all_product().items().size() > 0) {
-                            Log.i(TAG, response.data().all_product().items().toString());
-                            adapter.addAll(response.data().all_product().items());
+                        if (data.all_product.items.size() > 0) {
+                            Log.i(TAG, data.all_product.items.toString());
+                            adapter.addAll(data.all_product.items);
                             binding.recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }
                     });
                 }
-            }
-
-            @Override
-            public void onFailure(@NotNull ApolloException e) {
-                Log.e("onFailure", e.getMessage());
+                
+            } catch (Exception e) {
+                Log.e("onFailure", e.getMessage() != null ? e.getMessage() : "Unknown error");
                 ProductActivity.this.runOnUiThread(() -> {
                     binding.refreshContainer.setRefreshing(false);
                     binding.tvError.setVisibility(View.VISIBLE);
-                    binding.tvError.setText(String.format("Error Occurred %s",
-                            e.getLocalizedMessage()));
+                    binding.tvError.setText(String.format("Error Occurred: %s",
+                            e.getLocalizedMessage() != null ? e.getLocalizedMessage() : "Network error"));
                 });
             }
         });
