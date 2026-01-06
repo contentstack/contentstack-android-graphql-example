@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.apollographql.apollo'
+apply plugin: 'com.apollographql.apollo3'
 
 android {
     namespace 'com.contentstack.graphql'
@@ -103,15 +103,15 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     
-    // Apollo GraphQL v4 (updated to fix vulnerabilities)
-    implementation 'com.apollographql.apollo:apollo-runtime:4.1.1'
+    // Apollo GraphQL v3 (stable, fixes vulnerabilities)
+    implementation 'com.apollographql.apollo3:apollo-runtime:3.8.5'
     
     // Apollo adapters for Java/blocking calls
-    implementation 'com.apollographql.apollo:apollo-adapters:4.1.1'
+    implementation 'com.apollographql.apollo3:apollo-adapters:3.8.5'
     
-    // Kotlin coroutines (required for Apollo v4) - updated to fix vulnerabilities
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
+    // Kotlin coroutines (required for Apollo v3+) - updated to fix vulnerabilities
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
     
     // Annotations
     implementation 'org.jetbrains:annotations:24.1.0'
