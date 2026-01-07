@@ -1,3 +1,5 @@
+> [!WARNING]
+  **This repo is deprecated and no longer maintained. Security updates are not supported. We recommend avoiding its use.** We recommend viewing our latest [Kickstarts](https://www.contentstack.com/docs/developers/kickstarts).
 # Contentstack GraphQL Example
   
 ## Build an example app using Contentstack GraphQL API, and Apollo Client
