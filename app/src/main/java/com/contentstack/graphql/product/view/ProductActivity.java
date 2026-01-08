@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.apollographql.apollo.ApolloClient;
-import com.apollographql.apollo.api.ApolloResponse;
-import com.apollographql.apollo.exception.ApolloException;
+import com.apollographql.apollo3.ApolloClient;
+import com.apollographql.apollo3.api.ApolloResponse;
+import com.apollographql.apollo3.exception.ApolloException;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -122,8 +122,8 @@ public class ProductActivity extends AppCompatActivity {
                         EmptyCoroutineContext.INSTANCE,
                         (scope, continuation) -> getApolloClient().query(
                                 new ALLProductsQuery(
-                                        com.apollographql.apollo.api.Optional.present(skipCount),
-                                        com.apollographql.apollo.api.Optional.present(limit)
+                                        com.apollographql.apollo3.api.Optional.present(skipCount),
+                                        com.apollographql.apollo3.api.Optional.present(limit)
                                 )
                         ).execute(continuation)
                 );
